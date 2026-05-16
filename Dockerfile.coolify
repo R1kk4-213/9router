@@ -9,7 +9,7 @@ COPY package.json ./
 RUN --mount=type=cache,target=/root/.npm npm install
 COPY . ./
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN npm run build
+RUN NODE_OPTIONS=--max-old-space-size=2048 npm run build
 RUN echo "=== standalone tree ===" && \
     find /app/.next/standalone -maxdepth 3 -name "server.js" && \
     ls -la /app/.next/standalone/
