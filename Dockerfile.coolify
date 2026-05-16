@@ -24,11 +24,11 @@ ENV NODE_ENV=production \
     DATA_DIR=/app/data
 
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/public ./app/public
-COPY --from=builder /app/.next/static ./app/.next/static
-COPY --from=builder /app/open-sse ./app/open-sse
-COPY --from=builder /app/src/mitm ./app/src/mitm
-COPY --from=builder /app/node_modules/node-forge ./app/node_modules/node-forge
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/open-sse ./open-sse
+COPY --from=builder /app/src/mitm ./src/mitm
+COPY --from=builder /app/node_modules/node-forge ./node_modules/node-forge
 
 RUN mkdir -p /app/data /app/data-home && chown -R node:node /app && \
     ln -sf /app/data-home /root/.9router 2>/dev/null || true
